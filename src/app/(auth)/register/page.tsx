@@ -6,6 +6,7 @@ import { registerSchema } from "@/validators/auth";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 
 type RegisterFormInputs = {
   email: string;
@@ -14,6 +15,7 @@ type RegisterFormInputs = {
 };
 
 export default function RegisterPage() {
+      const router = useRouter();
   const { register: registerUser, loading, error } = useAuth();
 
   const {
@@ -26,6 +28,8 @@ export default function RegisterPage() {
 
   async function onSubmit(data: RegisterFormInputs) {
     await registerUser(data.email, data.password);
+    router.push("/login");
+
   }
 
   return (

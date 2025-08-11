@@ -27,8 +27,9 @@ export default function LoginPage() {
 
   async function onSubmit(data: LoginFormInputs) {
     await login(data.email, data.password);
-    console.log(data);
     router.push("/");
+    if (!error) {
+    }
   }
 
   return (

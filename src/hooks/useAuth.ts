@@ -10,10 +10,12 @@ export function useAuth() {
     setError(null);
     try {
       await signIn(email, password);
+      setLoading(false);
+      return true; 
     } catch (e: any) {
       setError(e.message);
-    } finally {
       setLoading(false);
+      return false;
     }
   }
 
