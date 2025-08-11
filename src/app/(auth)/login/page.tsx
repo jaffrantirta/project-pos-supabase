@@ -6,6 +6,7 @@ import { loginSchema } from "@/validators/auth";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 
 type LoginFormInputs = {
   email: string;
@@ -13,6 +14,7 @@ type LoginFormInputs = {
 };
 
 export default function LoginPage() {
+    const router = useRouter();
   const { login, loading, error } = useAuth();
 
   const {
@@ -25,6 +27,8 @@ export default function LoginPage() {
 
   async function onSubmit(data: LoginFormInputs) {
     await login(data.email, data.password);
+    console.log(data);
+    router.push("/");
   }
 
   return (
